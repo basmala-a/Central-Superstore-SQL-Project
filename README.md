@@ -1,243 +1,61 @@
-# Central Superstore SQL Project
+Central Superstore SQL Analysis
+Project Overview
+This project analyzes the Central Superstore retail sales dataset using MySQL. The original flat dataset was transformed into a normalized Star Schema consisting of one fact table and four dimension tables. The project then uses SQL to perform profitability analysis, customer behavior analysis, and sales trend analysis.
 
-## 📌 Project Overview
+Objectives
+Normalize the original flat dataset into fact and dimension tables.
+Create primary and foreign key relationships.
+Build a Star Schema for analytical reporting.
+Use SQL JOINs, subqueries, CTEs, CASE statements, and window functions.
+Create a reusable SQL View for KPI analysis.
+Create a parameterized Stored Procedure.
+Analyze profitability, customer behavior, and sales trends.
+Optimize analytical queries using indexes and EXPLAIN.
+Database Structure
+The final analytical schema contains:
 
-Central Superstore is a MySQL database project based on a Superstore-style sales dataset.
-
-The project transforms raw sales data into a structured analytical database using normalization and a Star Schema design.
-
-The database was implemented using MySQL and includes data validation, dimensional modeling, advanced SQL analysis, views, a stored procedure, and performance optimization.
-
----
-
-## 🎯 Project Objectives
-
-The main objectives of this project are:
-
-- Clean and validate the raw sales data.
-- Normalize the dataset into fact and dimension tables.
-- Create primary key and foreign key relationships.
-- Build a Star Schema model.
-- Perform advanced SQL analysis.
-- Use JOINs, subqueries, CTEs, CASE statements, and aggregate functions.
-- Create reusable SQL Views.
-- Create a Stored Procedure for sales KPIs.
-- Improve query performance using indexes.
-- Analyze sales, profit, customers, products, categories, locations, and shipping performance.
-
----
-
-## 🗂️ Project Structure
-
-```text
-Central-Superstore-SQL-Project/
-│
-├── README.md
-│
-├── SQL/
-│   └── central_superstore.sql
-│
-├── Documentation/
-│   └── Central_Superstore_Project_Documentation.docx
-│
-└── ERD/
-    └── erd.png
-📊 Fact Table
 fact_sales
-
-The fact table contains transactional sales information and foreign keys connecting the fact table to the dimension tables.
-
-Main columns:
-
-sales_key
-row_id
-order_id
-customer_key
-product_key
-location_key
-ship_mode_key
-order_date
-ship_date
-sales
-quantity
-discount
-profit
-📦 Dimension Tables
 dim_customer
-
-Contains customer information:
-
-customer_key
-customer_id
-customer_name
-segment
 dim_product
-
-Contains product information:
-
-product_key
-product_id
-product_name
-category
-sub_category
 dim_location
-
-Contains geographical information:
-
-location_key
-country
-city
-state
-postal_code
-region
 dim_ship_mode
+The original mytable is retained as the raw source table.
 
-Contains shipping mode information:
+Analysis Areas
+Profitability Analysis
+Profit and profit margin by product category
+Sub-categories below the overall profit margin
+Discount level and profitability
+Top products by profit
+Products with negative overall profit
+Customer Behavior Analysis
+Performance by customer segment
+Top customers by sales
+Customers with above-average order frequency
+Customers ordering across multiple years
+Customer value tiers
+Sales Trend Analysis
+Monthly sales and profit trends
+Year-over-year sales growth
+Quarterly sales performance
+Sales by shipping mode over time
+Seasonal sales trends
+Additional SQL Features
+The project includes:
 
-ship_mode_key
-ship_mode
-🔑 Database Relationships
-
-The fact_sales table is connected to the dimension tables using foreign keys:
-
-customer_key
-product_key
-location_key
-ship_mode_key
-🧹 Data Validation
-
-The project includes data validation checks such as:
-
-Total number of records.
-NULL value checks.
-Distinct customer count.
-Distinct product count.
-Distinct order count.
-Distinct shipping modes.
-Distinct categories.
-Distinct sub-categories.
-Distinct regions.
-Duplicate Row_ID checks.
-🔄 Data Loading Process
-
-The project follows this process:
-
-Raw Data
-   ↓
-mytable
-   ↓
-Data Validation
-   ↓
-Dimension Tables
-   ↓
-fact_sales
-   ↓
-SQL Analysis
-   ↓
-Views & Stored Procedure
-   ↓
-Optimization
-🔍 Advanced SQL Analysis
-
-The project uses advanced SQL techniques including:
-
-JOIN
-GROUP BY
-HAVING
-CASE
+Primary and foreign keys
+Multiple JOIN operations
 Subqueries
 CTEs
-Aggregate Functions
-Date Functions
-ORDER BY
-LIMIT
-ROUND
-NULLIF
-Analysis Areas
-Total Sales
-Total Profit
-Total Quantity
-Total Orders
-Total Customers
-Profit Margin
-Sales and Profit by Category
-Sales by Segment
-Top Customers
-Sales and Profit by State
-Monthly Sales Trend
-Loss-Making Products
-Shipping Duration
-Discount Analysis
-👁️ SQL Views
-vw_category_kpis
-
-Provides category-level KPIs including:
-
-Total Sales
-Total Quantity
-Total Profit
-Profit Margin
-vw_customer_behavior
-
-Provides customer-level behavior metrics including:
-
-Customer information
-Number of orders
-Quantity
-Sales
-Profit
-Profit Margin
-⚙️ Stored Procedure
-sp_sales_kpis
-
-The stored procedure provides the main overall sales KPIs:
-
-Total Orders
-Total Customers
-Total Units
-Total Sales
-Total Profit
-Profit Margin
-
-Execute it using:
-
-CALL sp_sales_kpis();
-🚀 Performance Optimization
-
-Indexes were created on commonly used columns:
-
-customer_key
-product_key
-location_key
-order_date
-ship_date
-ship_mode_key
-order_id
-
-The project also uses EXPLAIN to inspect query execution plans.
-
-🗺️ ER Diagram
-
-The database structure and relationships are represented in the ER Diagram available in the ERD folder.
-
-▶️ How to Run
-Install MySQL and MySQL Workbench.
-Open the SQL script from the SQL folder.
-Execute the script from the beginning.
-The database central_superstore will be created.
-The raw data will be loaded into mytable.
-The dimension tables will be created and populated.
-The fact_sales table will be created and populated.
-The analytical queries, views, stored procedure, and indexes will be created.
-📚 Documentation
-
-Detailed project documentation is available in the Documentation folder.
-
-🛠️ Technologies Used
+CASE statements
+Window functions
+SQL View
+Stored Procedure
+Indexing and query optimization using EXPLAIN
+Project Files
+Final_Central_Superstore_Project.sql — Complete SQL code for the project
+Central_Superstore_SQL_Documentation.pdf — Project documentation
+ERP Diagram.png — Database/ERD diagram
+Tools
 MySQL
 MySQL Workbench
-SQL
-GitHub
-📌 Project Summary
-
-This project demonstrates how raw sales data can be transformed into a structured analytical database using normalization, Star Schema design, advanced SQL analysis, reusable database objects, and performance optimization.
